@@ -2,17 +2,17 @@
   "schemaVersion": 1,
   "id": "speedrun-timer",
   "version": "${version}",
-  "name": "Timer",
-  "description": "Speedrun timer for Fabric with auto-splits",
+  "name": "Speedrun Timer",
+  "description": "Speedrun Timer for Fabric with auto-splits.",
   "authors": [
-    "johnpyp"
+    "johnpyp",
+    "naturecodevoid"
   ],
   "contact": {
-    "homepage": "https://github.com/johnpyp/speedrun-timer",
-    "sources": "https://github.com/johnpyp/speedrun-timer"
+    "homepage": "https://github.com/naturecodevoid/speedrun-timer",
+    "sources": "https://github.com/naturecodevoid/speedrun-timer"
   },
   "license": "MIT",
-  "icon": "assets/timer/icon.png",
   "environment": "client",
   "entrypoints": {
     "main": [

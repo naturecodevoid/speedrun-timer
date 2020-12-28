@@ -4,8 +4,8 @@
   "package": "com.johnpyp.speedruntimer.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ServerPlayerEntityAccessor",
-    "MinecraftClientAccessor"
+    "MinecraftClientAccessor",
+    "ServerPlayerEntityAccessor"
   ],
   "client": [],
   "injectors": {
