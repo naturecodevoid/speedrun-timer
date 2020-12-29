@@ -9,8 +9,11 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class SpeedrunTimer implements ModInitializer {
@@ -32,7 +35,7 @@ public class SpeedrunTimer implements ModInitializer {
         } catch (NullPointerException e) {
             System.err.println("Deleting data file (speedrun-timer.data.json) because there was an error. File data:");
             try {
-                System.err.println(Files.readString(Path.of(file.getPath())));
+                System.err.println(readLineByLineJava8(file.getPath()));
             } catch (Exception ignored) {
                 System.err.println("Failed to print file data.");
             }
@@ -46,5 +49,18 @@ public class SpeedrunTimer implements ModInitializer {
         }
         TickHandler tickHandler = new TickHandler(client, store, config);
         HudRenderCallback.EVENT.register((__, ___) -> tickHandler.tick());
+    }
+
+    // https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+    private static String readLineByLineJava8(String filePath) {
+        StringBuilder contentBuilder = new StringBuilder();
+
+        try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
+            stream.forEach(s -> contentBuilder.append(s).append("\n"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return contentBuilder.toString();
     }
 }
